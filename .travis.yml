@@ -1,0 +1,21 @@
+language: c
+
+- os: linux
+  compiler: clang
+  addons:
+    apt:
+      sources: ['ubuntu-toolchain-r-test', 'kalakris-cmake']
+      packages: ['clang-12', 'cmake']
+  env: COMPILER=clang++-12
+
+script:
+  - cmake -B build -G "Unix Makefiles"
+  - cd build
+  - make
+  - make test
+
+before_install:
+  # Print used compiler versions.
+  - clang --version
+  - cmake --version
+

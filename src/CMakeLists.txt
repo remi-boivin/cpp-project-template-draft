@@ -1,0 +1,12 @@
+set (CMAKE_CXX_COMPILER "/usr/bin/clang++-12")
+set(CMAKE_CXX_FLAGS --coverage)
+add_compile_options(-Wall -Wextra -Wpedantic -Werror -fexperimental-new-pass-manager -fpass-plugin=/usr/lib/mull-ir-frontend-12 -g -grecord-command-line)
+set(CURRENT_EXE_NAME cpp-project-template)
+set(SOURCE_FILES main.cpp Log/Logger.cpp)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+add_executable(${CURRENT_EXE_NAME} ${SOURCE_FILES})
+include_directories("../includes")
+include_directories("/usr/include/c++/11")
+# link against math library.
+target_link_libraries(${CURRENT_EXE_NAME} m)
+install(TARGETS ${CURRENT_EXE_NAME} DESTINATION bin)
